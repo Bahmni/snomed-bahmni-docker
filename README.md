@@ -233,7 +233,7 @@ The default configuration comes with [default-config](https://github.com/Bahmni/
 
 To override default-config with your implementation specific configuration, it is recommended to build a docker image of your config and use it with the bahmni-config service. 
 
-The steps to build the docker image for your implementation specific config can be found [here](https://github.com/Bahmni/default-config#docker-image-build). Once you have the docker image built you need to update `Bahmni Config Environment Variables` in the [.env](./.env) file.
+The steps to build the docker image for your implementation specific config can be found [here](https://github.com/Bahmni/default-config#docker-image-build). Once you have the docker image built you need to update `Bahmni Config Environment Variables` in the [.env](bahmni-standard/.env) file.
 
 ### Local development on config
 If you are doing local development on configuration, you can mount your local folder also. Follow the step below.
@@ -455,7 +455,7 @@ Note: Do these steps only if you need to update Bahmni Odoo modules.
 # Debugging OpenMRS Application
 Since OpenMRS is running on Tomcat, remote debugging can be enabled and can be connected with IDE supporting remote debugging.(Eclipse, Intellij IDEA etc.)
 
-1. Enable debugging by uncommenting & setting `OMRS_DEV_DEBUG_PORT` to some port (e.g 8000) in the [.env](.env#L80) and [docker-compose](docker-compose.yml#L152#L170) files
+1. Enable debugging by uncommenting & setting `OMRS_DEV_DEBUG_PORT` to some port (e.g 8000) in the [.env](bahmni-standard/.env#L80) and [docker-compose](bahmni-standard/docker-compose.yml#L152#L170) files
 2. Now remote debugging for OpenMRS is exposed on port `OMRS_DEV_DEBUG_PORT` in your local machine.
 3. Now you can follow the IDE configuration to setup remote debugging using host as `localhost` and port as the value of `OMRS_DEV_DEBUG_PORT`. 
 4. For example in Intellij IDEA navigate to Run -> Edit Configurations. In the dialog box click on `+` icon to create a new config and select `Remote JVM Debug`. Fill in the host,port and name and click Apply. Now you can use the debugger.
@@ -463,7 +463,7 @@ Since OpenMRS is running on Tomcat, remote debugging can be enabled and can be c
     > ```⚠ Make sure to disable debugging by setting the variable to false if you are running in a Production Environment```
 
 # Apache Tomcat Environment Variables
-To set CATALINA_HOME and JAVA_OPTS or other Environment variables  used by the Tomcat startup scripts, set the value of [these variables](docker-compose.yml#L153#L154), [here](.env#L81#L82). The values of CATALINA_HOME and JAVA_OPTS are set as 
+To set CATALINA_HOME and JAVA_OPTS or other Environment variables  used by the Tomcat startup scripts, set the value of [these variables](bahmni-standard/docker-compose.yml#L153#L154), [here](bahmni-standard/.env#L81#L82). The values of CATALINA_HOME and JAVA_OPTS are set as 
 ```
 JAVA_OPTS="$OMRS_JAVA_SERVER_OPTS"
 CATALINA_OPTS="${OMRS_JAVA_MEMORY_OPTS} -DOPENMRS_INSTALLATION_SCRIPT=${OMRS_SERVER_PROPERTIES_FILE} -DOPENMRS_APPLICATION_DATA_DIRECTORY=${OMRS_DATA_DIR}/"

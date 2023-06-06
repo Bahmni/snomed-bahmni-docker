@@ -11,7 +11,7 @@ This directory contains resources for building Docker image for Bahmni Proxy Con
     ```shell
      docker build -t bahmni/proxy:local .
      ```
-3. Once the image is successfully built, update the image tag in the [.env](../.env) file in the `PROXY_IMAGE_TAG` variable.
+3. Once the image is successfully built, update the image tag in the [.env](../bahmni-standard/.env) file in the `PROXY_IMAGE_TAG` variable.
 
 
 ### Notes:
