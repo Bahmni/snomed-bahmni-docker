@@ -171,6 +171,7 @@ services:
       MAIL_FROM: ${MAIL_FROM}
       MAIL_USER: ${MAIL_USER}
       MAIL_PASSWORD: ${MAIL_PASSWORD}
+      OMRS_C3P0_MAX_SIZE: ${OMRS_C3P0_MAX_SIZE}
     ports:
       - '8080:8080'
       # - ${OMRS_DEV_DEBUG_PORT}:${OMRS_DEV_DEBUG_PORT}
