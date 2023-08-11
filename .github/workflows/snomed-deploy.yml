@@ -6,6 +6,14 @@ on:
 
   workflow_dispatch:
     inputs:
+      config:
+        description: 'Configuration to deploy'
+        required: true
+        type: choice
+        default: SNOMED Standard
+        options:
+          - SNOMED Standard
+          - SNOMED Clinic
       environment:
         description: 'Environment to deploy'
         required: true
@@ -20,7 +28,7 @@ env:
 
 jobs:
   deploy:
-    name: Deploy to SNOMED ${{ github.event.inputs.environment || 'dev'}} environment
+    name: Deployment of ${{ github.event.inputs.config || 'SNOMED Standard' }} to SNOMED ${{ github.event.inputs.environment || 'dev'}} environment
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
@@ -33,7 +41,7 @@ jobs:
           role-duration-seconds: 900 # 15 mins
           role-session-name: SNOMED
 
-      - name: Deploy to SNOMED ${{ github.event.inputs.environment || 'dev'}} Environment
+      - name: Deployment of ${{ github.event.inputs.config || 'SNOMED Standard' }} to SNOMED ${{ github.event.inputs.environment || 'dev'}} Environment
         run: |
           INSTANCE_ID=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=${{ github.event.inputs.environment || 'dev'}}" "Name=instance-state-name,Values=running" --query "Reservations[].Instances[].InstanceId" --output text)
           if [ -z "$INSTANCE_ID" ]; then
@@ -43,7 +51,7 @@ jobs:
             SSM_COMMAND_TARGET_JSON=${{ toJson('[{"Key":"InstanceIds","Values":["${INSTANCE_ID}"]}]') }}
             aws ssm send-command --document-name "AWS-RunShellScript" \
             --targets $SSM_COMMAND_TARGET_JSON \
-            --parameters '{"workingDirectory":["${{ secrets.SNOMED_WORKING_DIRECTORY }}"],"commands":["bash deploy.sh"]}' \
+            --parameters '{"workingDirectory":["${{ secrets.SNOMED_WORKING_DIRECTORY }}"],"commands":["bash deploy.sh ${{ github.event.inputs.config || 'SNOMED Standard'}}"]}' \
             --region ${{ secrets.SNOMED_AWS_REGION }} | jq '.Command | {CommandId: .CommandId, Status: .Status}'
           fi
 
@@ -57,8 +65,8 @@ jobs:
       - name: Success
         if: ${{ needs.deploy.result == 'success' }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":">🟢 Deployement to ${{ github.event.inputs.environment || 'dev'}} Environment Started & will be available in 5 minutes. \n>*Bahmni* https://${{ github.event.inputs.environment || 'dev'}}.snomed.mybahmni.in \n> <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Github Actions Job #${{github.run_id}}>"}' ${{ secrets.SNOMED_SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":">🟢 Deployment of ${{ github.event.inputs.config || 'SNOMED Standard' }} to ${{ github.event.inputs.environment || 'dev'}} Environment Started & will be available in 5 minutes. \n>*Bahmni* https://${{ github.event.inputs.environment || 'dev'}}.snomed.mybahmni.in \n> <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Github Actions Job #${{github.run_id}}>"}' ${{ secrets.SNOMED_SLACK_WEBHOOK_URL }}
       - name: Failure
         if: ${{ needs.deploy.result != 'success' }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"🔴 Deployement to ${{ github.event.inputs.environment || 'dev'}} Environment failed!!! This is where you go look what happened → <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Github Actions Job #${{github.run_id}}>"}' ${{ secrets.SNOMED_SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"🔴 Deployment of ${{ github.event.inputs.config || 'SNOMED Standard' }} to ${{ github.event.inputs.environment || 'dev'}} Environment failed!!! This is where you go look what happened → <https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}|Github Actions Job #${{github.run_id}}>"}' ${{ secrets.SNOMED_SLACK_WEBHOOK_URL }}
