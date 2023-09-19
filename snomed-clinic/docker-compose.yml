@@ -514,6 +514,14 @@ services:
     ports:
       - '9090:8080'
 
+  snowstorm-lite:
+    profiles: [ "snomed-clinic" ]
+    image: sivareddytw/snowstorm-lite:${SNOWSTORM_LITE_IMAGE_TAG:?}
+    environment:
+      JAVA_OPTS: ${SNOWSTORM_LITE_JAVA_SERVER_OPTS}
+    ports:
+      - '9191:8080'
+
 volumes:
   openelisdbdata:
   odoodbdata:
