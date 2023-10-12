@@ -14,6 +14,8 @@ on:
         options:
           - SNOMED Standard
           - SNOMED Clinic
+          - SNOMED Standard + Snowstorm Lite
+          - SNOMED Clinic + Snowstorm Lite
       environment:
         description: 'Environment to deploy'
         required: true
