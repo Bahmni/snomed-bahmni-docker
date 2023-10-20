@@ -530,6 +530,12 @@ services:
     ports:
       - '9191:8080'
 
+  load-snowstorm-lite-data:
+    profiles: [ "snomed-clinic", "snowstorm-lite" ]
+    build: ./load-data
+    volumes:
+      - "${SNOWSTORM_RF2_FILE_PATH:?}:/snowstorm-data/snomed-data.zip:ro"
+
 volumes:
   openelisdbdata:
   odoodbdata:
