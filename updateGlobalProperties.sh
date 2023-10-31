@@ -22,7 +22,7 @@ docker exec snomed-clinic-with-snowstorm-lite-openmrsdb-1 /bin/sh -c 'mysql -u r
 echo "Done Updating Global Properties!!!"
 
 echo "Update Search Index"
-curl --location --request POST 'https://dev.snomed.mybahmni.in/openmrs/ws/rest/v1/searchindexupdate' --header 'Authorization: Basic c3VwZXJtYW46QWRtaW4xMjM='
+curl --location --request POST 'http://localhost:8080/openmrs/ws/rest/v1/searchindexupdate' --header 'Authorization: Basic c3VwZXJtYW46QWRtaW4xMjM='
 
 if [ "Lite" = "$1" ]; then
     echo "Updating Global Properties for SNOWSTORM LITE"
