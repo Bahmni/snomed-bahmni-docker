@@ -4,7 +4,7 @@ update global_property set property_value='https://snowstorm.snomed.mybahmni.in/
 update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/{0}' where property='ts.fhir.conceptDetailsUrl';
 update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/<404684003' where property='ts.fhir.diagnosissearch.valueseturl';
 update global_property set property_value='ValueSet/$expand?url={0}&filter={1}&count={2}&displayLanguage={3}&includeDesignations={4}' where property='ts.fhir.valueset.urltemplate';
-update global_property set property_value='https://cdss-dev.snomed.mybahmni.in/cds-services' where property='cdss.fhir.baseurl';
+update global_property set property_value='http://cdss:8080/cds-services' where property='cdss.fhir.baseurl';
 update global_property set property_value='true' where property='cdss.enable';
 update global_property set property_value='ValueSet/$expand?url={0}&displayLanguage={1}&_format={2}&filter={3}&count={4}' where property='ts.fhir.observation.valueset.urltemplate';
 update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/<<' where property='ts.fhir.diagnosiscount.valueseturl';
