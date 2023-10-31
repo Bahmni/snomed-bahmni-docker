@@ -16,5 +16,5 @@ while true; do
 done
 
 # Make a POST API call to load data
-curl -v -u admin:<UPDATE_PASSWORD_HERE> --form file='@/snowstorm-data/snomed-data.zip' --form version-uri="http://snomed.info/sct/900000000000207008/version/20230731" http://snowstorm-lite:8080/fhir-admin/load-package
+curl -v -u admin:Admin@123 --form file='@/snowstorm-data/snomed-data.zip' --form version-uri="http://snomed.info/sct/900000000000207008/version/20230731" http://snowstorm-lite:8080/fhir-admin/load-package
 echo "Data Loaded Successfully"
