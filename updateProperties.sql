@@ -1,18 +1,6 @@
 use openmrs;
-update global_property set property_value='true' where property='bahmni.lookupExternalTerminologyServer';
-update global_property set property_value='https://snowstorm.snomed.mybahmni.in/fhir/' where property='ts.fhir.baseurl';
-update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/{0}' where property='ts.fhir.conceptDetailsUrl';
-update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/<404684003' where property='ts.fhir.diagnosissearch.valueseturl';
-update global_property set property_value='ValueSet/$expand?url={0}&filter={1}&count={2}&displayLanguage={3}&includeDesignations={4}' where property='ts.fhir.valueset.urltemplate';
-update global_property set property_value='http://cdss:8080/cds-services' where property='cdss.fhir.baseurl';
-update global_property set property_value='true' where property='cdss.enable';
-update global_property set property_value='ValueSet/$expand?url={0}&displayLanguage={1}&_format={2}&filter={3}&count={4}' where property='ts.fhir.observation.valueset.urltemplate';
-update global_property set property_value='http://snomed.info/sct?fhir_vs=ecl/<<' where property='ts.fhir.diagnosiscount.valueseturl';
 update idgen_seq_id_gen set max_length = 14 where prefix != 'NAT';
-update global_property set property_value='ValueSet/$expand?url={0}{1}&displayLanguage={2}&count={3,number,#}&offset={4,number,#}' where property='ts.fhir.diagnosiscount.valueset.urltemplate';
 update concept set is_set = 1 where concept_id = (select concept_id from concept_name where name="Procedure Orders" and locale="en" and concept_name_type = "FULLY_SPECIFIED");
-update global_property set property_value='http://bahmni.org/fhir/ValueSet/' where property='ts.fhir.procedure.valueset.urltemplate';
-update global_property set property_value='/openmrs/data/fhir-export-anonymise-config.json' where property='fhir.export.anonymise.config.path';
 update drug set retired = 1, retire_reason="Not needed" where date_created < "2023-10-24 14:53:06";
 select user_id INTO @user_id from users where username = 'registration';
 INSERT INTO user_role (user_id, role) VALUES (@user_id, 'FrontDesk');
