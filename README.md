@@ -4,6 +4,8 @@ Refer to this [Wiki Page](https://bahmni.atlassian.net/wiki/spaces/BAH/pages/299
 
 ### Note : This repository is used to run entire SNOMED Integration with Bahmni. 
 
+### Local Deployment guide is [here](https://bahmni.atlassian.net/wiki/spaces/BAH/pages/3183345706/Bahmni-SNOMED+Integration+Local+Deployment+Guide)
+
 ## SNOMED Integration
 This deployment comes with two profiles i.e **_snomed-clinic_** and **_snomed-standard_**. More details can be found [here](https://bahmni.atlassian.net/wiki/spaces/BAH/pages/3132686337/SNOMED+FHIR+Terminology+Server+Integration+with+Bahmni)
 
