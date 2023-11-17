@@ -36,7 +36,7 @@ function checkIfDirectoryIsCorrect {
     current_subdir=$(basename $(pwd))
     echo "$current_subdir"
 
-    if [ "$current_subdir" == "snomed-clinic" ] || [ "$current_subdir" == "snomed-standard" ] ; then
+    if [ "$current_subdir" == "snomed-clinic" ] || [ "$current_subdir" == "snomed-standard" ] || [ "$current_subdir" == "snomed-clinic-with-snowstorm-lite" ] || [ "$current_subdir" == "snomed-standard-with-snowstorm-lite" ] ; then
         return
     else
         echo "Error: This script should be run from either 'snomed-clinic' or 'snomed-standard' subfolder. Please cd to the appropriate sub-folder and then execute the run-bahmni.sh command."
