@@ -22,6 +22,8 @@ To use Snowstorm Lite server along with SNOMED CLINIC or STANDARD, please follow
 1. Go to snomed-clinic-with-snowstorm-lite or snomed-standard-with-snowstorm-lite subfolder. For example: `cd snomed-standard-with-snowstorm-lite`.
 2. Update _SNOWSTORM_RF2_FILE_PATH_ with RF2 file path from SNOMED and _admin.password_ in the .env file.
 3. Replace `<UPDATE_PASSWORD_HERE>` with the same _admin.password_ in the load-data.sh file.
+4. Please update the global properties in openmrs following the below Wiki page:
+   https://bahmni.atlassian.net/wiki/spaces/BAH/pages/3183345706/Bahmni-SNOMED+Integration+Local+Deployment+Guide
 
 ### Known Issues with SNOMED CLINIC
 1. For any concept supporting multiple languages, the form builder report displays all the languages against
